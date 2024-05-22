@@ -8,12 +8,25 @@
   overflow: hidden;
   &__fields {
     height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2f2f37;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #8585ad;
+    }
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
   }
   &__field {
     margin-top: 40px;
   }
 }
+
 .titleWrapper {
   margin-top: 40px;
 }

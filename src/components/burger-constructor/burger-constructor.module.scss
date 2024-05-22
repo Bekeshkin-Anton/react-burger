@@ -14,6 +14,18 @@
   height: calc(100% - 64px - 100px);
   max-height: 100%;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #2f2f37;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #8585ad;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 .constructorElemWrapper {
   display: flex;

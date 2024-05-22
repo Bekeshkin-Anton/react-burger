@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './order-accept-popup.module.scss';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientsData } from '../../../utils/data';
 import successImg from '../../../images/success.svg';
 export default function OrderAcceptPopup(props) {
   const [isShow, setIsShow] = useState(false);
