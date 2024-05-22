@@ -1,0 +1,50 @@
+.burgerConstructor {
+  padding-top: 100px;
+  padding-inline: 16px;
+  justify-self: flex-start;
+  height: 100%;
+  max-height: 89vh;
+}
+.constructorField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  height: calc(100% - 64px - 100px);
+  max-height: 100%;
+  overflow: auto;
+}
+.constructorElemWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.dragIconWrap {
+  width: 32px;
+  height: 100%;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &_visible {
+    @extend .dragIconWrap;
+    visibility: visible;
+  }
+}
+.checkoutField {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-top: 40px;
+}
+.orderPriceWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
