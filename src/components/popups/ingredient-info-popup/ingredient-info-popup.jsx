@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ingredient-info-popup.module.scss';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ingredientsData } from '../../../utils/data';
-export default function IngredientInfoPopup() {
+export default function IngredientInfoPopup(props) {
+  const [isShow, setIsShow] = useState(false);
+  const classChanger = isShow ? 'popupLayout_show' : 'popupLayout';
+  const hidePopup = () => setIsShow(!isShow);
   return (
-    <div className={styles.popupLayout}>
+    <div className={styles[classChanger]}>
       <div className={styles.popup}>
         <div className={styles.popupHeader}>
           <p className="text text_type_main-large">Детали ингридиента</p>
-          <CloseIcon type="primary" />
+          <CloseIcon type="primary" onClick={() => hidePopup()} />
         </div>
 
         <div className={styles.ingredientImageWrapper}>
