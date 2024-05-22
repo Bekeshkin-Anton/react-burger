@@ -26,24 +26,4 @@
     width: fit-content;
     height: fit-content;
   }
-  &__title {
-  }
-}
-.itemCount {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 4px;
-  border-radius: 50%;
-  background-color: #4c4cff;
-  width: 32px;
-  height: 32px;
-  visibility: hidden;
-  &_visible {
-    @extend .itemCount;
-    visibility: visible;
-  }
 }

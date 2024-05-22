@@ -25,7 +25,7 @@ export default function BurgerIngredients() {
                 image={filteredBuns.image}
                 price={filteredBuns.price}
                 title={filteredBuns.name}
-                currentItemCount={filteredBuns.__v}
+                count={filteredBuns.__v}
               />
             ))}
           </div>
@@ -39,7 +39,7 @@ export default function BurgerIngredients() {
                 image={filteredSauce.image}
                 price={filteredSauce.price}
                 title={filteredSauce.name}
-                currentItemCount={filteredSauce.__v}
+                count={filteredSauce.__v}
               />
             ))}
           </div>
@@ -53,7 +53,7 @@ export default function BurgerIngredients() {
                 image={filteredFilling.image}
                 price={filteredFilling.price}
                 title={filteredFilling.name}
-                currentItemCount={filteredFilling.__v}
+                count={filteredFilling.__v}
               />
             ))}
           </div>

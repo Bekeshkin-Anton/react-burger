@@ -1,12 +1,10 @@
 import React from 'react';
 import styles from './ingredient-card.module.scss';
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 export default function IngredientCard(props) {
   return (
     <div className={styles.ingredientCard}>
-      <div className={styles.itemCount}>
-        <p className="text text_type_digits-default">{props.currentItemCount}</p>
-      </div>
+      <Counter count={props.count} size="default" extraClass="m-1" />
       <div className={styles.ingredientCard__image}>
         <img src={props.image} alt="" />
       </div>
