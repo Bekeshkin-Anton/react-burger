@@ -5,7 +5,6 @@ import { ingredientsData } from '../../../utils/data';
 export default function IngredientInfoPopup() {
   return (
     <div className={styles.popupLayout}>
-      {/* <div className={styles.popupBackground}></div> */}
       <div className={styles.popup}>
         <div className={styles.popupHeader}>
           <p className="text text_type_main-large">Детали ингридиента</p>
