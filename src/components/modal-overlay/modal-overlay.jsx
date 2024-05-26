@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import styles from './modal-overlay.module.scss';
-import Modal from '../modal/modal';
 
-export default function ModalOverlay() {
-  const [isVisible, setIsVisible] = useState(false);
-  const handleOpenModal = () => {
-    setIsVisible(true);
-  };
-  const handleCloseModal = () => {
-    setIsVisible(false);
-  };
+export default function ModalOverlay({ title, onClose, children }) {
   return (
-    <>
-      {isVisible && (
-        <div className={styles.modalOverlay}>
-          <Modal title="Детали ингридиента" />
-        </div>
-      )}
-    </>
+    <div className={styles.modalOverlay}>
+      <>{title}</>
+      <>{children}</>
+    </div>
   );
 }

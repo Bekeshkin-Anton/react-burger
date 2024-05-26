@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './burger-ingredients.module.scss';
 import Tabs from '../tabs/tabs';
 import IngredientCard from './ingredient-card/ingredient-card';
+import Modal from '../modal/modal';
+import IngredientDetails from '../Ingredient-details/ingredient-details';
 
 export default function BurgerIngredients(props) {
   const { data } = props;
-  console.log('data: ', typeof data, data);
+  const [isModalOpened, setIsModalOpened] = useState(false);
 
   const dataList = Object.values(data);
 
@@ -13,6 +15,8 @@ export default function BurgerIngredients(props) {
   const sauces = dataList.filter((sauce) => sauce.type === 'sauce');
   const fillings = dataList.filter((filling) => filling.type === 'main');
 
+  const onOpenModal = () => setIsModalOpened(true);
+  const onCloseModal = () => setIsModalOpened(false);
   return (
     <section className={styles.burgerIngredients}>
       <div className={styles.titleWrapper}>
@@ -25,6 +29,7 @@ export default function BurgerIngredients(props) {
           <div className={styles.burgerIngredientsField}>
             {buns.map((filteredBuns) => (
               <IngredientCard
+                onClick={onOpenModal}
                 key={filteredBuns._id}
                 image={filteredBuns.image}
                 price={filteredBuns.price}
@@ -39,6 +44,7 @@ export default function BurgerIngredients(props) {
           <div className={styles.burgerIngredientsField}>
             {sauces.map((filteredSauce) => (
               <IngredientCard
+                onClick={onOpenModal}
                 key={filteredSauce._id}
                 image={filteredSauce.image}
                 price={filteredSauce.price}
@@ -53,6 +59,7 @@ export default function BurgerIngredients(props) {
           <div className={styles.burgerIngredientsField}>
             {fillings.map((filteredFilling) => (
               <IngredientCard
+                onClick={onOpenModal}
                 key={filteredFilling._id}
                 image={filteredFilling.image}
                 price={filteredFilling.price}
@@ -63,6 +70,11 @@ export default function BurgerIngredients(props) {
           </div>
         </div>
       </div>
+      {isModalOpened && (
+        <Modal title="Детали ингредиента" onClose={onCloseModal}>
+          <IngredientDetails />
+        </Modal>
+      )}
     </section>
   );
 }

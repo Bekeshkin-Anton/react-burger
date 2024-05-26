@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ingredient-details.module.scss';
-export default function IngredientDetails(props) {
+export default function IngredientDetails({ ...props }) {
   return (
     <>
       <div className={styles.ingredientImageWrapper}>

@@ -8,6 +8,7 @@ function App() {
   const [appState, setAppState] = useState({
     data: [],
   });
+
   useEffect(() => {
     const apiUrl = 'https://norma.nomoreparties.space/api/ingredients';
     fetch(apiUrl)
@@ -18,16 +19,19 @@ function App() {
         setAppState({ data: data.data });
       })
       .catch((error) => console.error(error));
-  }, [setAppState]);
+  }, []);
 
   return (
-    <div className="App">
-      <AppHeader />
-      <main>
-        <BurgerIngredients data={appState.data} />
-        <BurgerConstructor />
-      </main>
-    </div>
+    <>
+      <div className="App">
+        <AppHeader />
+        <main>
+          <BurgerIngredients data={appState.data} />
+          <BurgerConstructor data={appState.data} />
+        </main>
+        <div id="modals-root"></div>
+      </div>
+    </>
   );
 }
 
