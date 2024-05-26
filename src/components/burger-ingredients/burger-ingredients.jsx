@@ -1,13 +1,17 @@
 import React from 'react';
 import styles from './burger-ingredients.module.scss';
 import Tabs from '../tabs/tabs';
-import { ingredientsData } from '../../utils/data';
 import IngredientCard from './ingredient-card/ingredient-card';
 
-export default function BurgerIngredients() {
-  const buns = ingredientsData.filter((bun) => bun.type === 'bun');
-  const sauces = ingredientsData.filter((sauce) => sauce.type === 'sauce');
-  const fillings = ingredientsData.filter((filling) => filling.type === 'main');
+export default function BurgerIngredients(props) {
+  const { data } = props;
+  console.log('data: ', typeof data, data);
+
+  const dataList = Object.values(data);
+
+  const buns = dataList.filter((bun) => bun.type === 'bun');
+  const sauces = dataList.filter((sauce) => sauce.type === 'sauce');
+  const fillings = dataList.filter((filling) => filling.type === 'main');
 
   return (
     <section className={styles.burgerIngredients}>

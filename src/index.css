@@ -12,3 +12,6 @@ code {
 * {
   box-sizing: border-box;
 }
+.mb-120 {
+  margin-bottom: 120px !important;
+}

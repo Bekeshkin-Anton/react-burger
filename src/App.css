@@ -11,4 +11,5 @@ main {
   column-gap: 40px;
   max-width: 100%;
   max-height: 89%;
+  overflow: hidden;
 }

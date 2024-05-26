@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import AppHeader from './components/app-header/app-header';
 import BurgerIngredients from './components/burger-ingredients/burger-ingredients';
 import BurgerConstructor from './components/burger-constructor/burger-constructor';
-import IngredientInfoPopup from './components/popups/ingredient-info-popup/ingredient-info-popup';
-import OrderAcceptPopup from './components/popups/order-accept-popup/order-accept-popup';
 
 function App() {
+  const [appState, setAppState] = useState({
+    data: [],
+  });
+  useEffect(() => {
+    const apiUrl = 'https://norma.nomoreparties.space/api/ingredients';
+    fetch(apiUrl)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setAppState({ data: data.data });
+      })
+      .catch((error) => console.error(error));
+  }, [setAppState]);
+
   return (
     <div className="App">
-      <IngredientInfoPopup />
-      <OrderAcceptPopup />
       <AppHeader />
       <main>
-        <BurgerIngredients />
+        <BurgerIngredients data={appState.data} />
         <BurgerConstructor />
       </main>
     </div>

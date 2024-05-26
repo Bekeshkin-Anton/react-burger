@@ -7,7 +7,7 @@ export default function IngredientCard(props) {
   const classChanger = props.count === 0 ? 'counter' : 'counter_show';
 
   return (
-    <div className={styles.ingredientCard}>
+    <div className={styles.ingredientCard} onClick={props.onClick}>
       <div className={styles[classChanger]}>
         <Counter count={props.count} size="default" extraClass="m-1" />
       </div>
