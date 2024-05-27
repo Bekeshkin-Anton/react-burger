@@ -9,12 +9,13 @@ export default function BurgerConstructor(props) {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const dataList = Object.values(data);
-  console.log('dataList: ', dataList);
 
   const selectedIngredients = dataList.filter((ingredient) => ingredient.type != 'bun');
 
   const onOpenModal = () => setIsModalOpened(true);
-  const onCloseModal = () => setIsModalOpened(false);
+  const onCloseModal = () => {
+    setIsModalOpened(false);
+  };
   return (
     <section className={styles.burgerConstructor}>
       <div className={styles.constructorField}>

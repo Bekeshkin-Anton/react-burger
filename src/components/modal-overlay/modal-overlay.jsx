@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './modal-overlay.module.scss';
 
-export default function ModalOverlay({ title, onClose, children }) {
+export default function ModalOverlay({ ...props }) {
   return (
-    <div className={styles.modalOverlay}>
-      <>{title}</>
-      <>{children}</>
+    <div className={styles.modalOverlay} onClick={props.onClose}>
+      <>{props.title}</>
+      <>{props.children}</>
     </div>
   );
 }

@@ -5,3 +5,28 @@
   justify-content: center;
   gap: 32px;
 }
+.ingredientImageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  & img {
+    width: 480px;
+    height: 240px;
+  }
+}
+.compound {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  margin-top: 32px;
+  margin-bottom: 60px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 112px;
+  }
+}

@@ -7,11 +7,11 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 export default function Modal({ ...props }) {
   const modalRoot = document.getElementById('react-modal');
   return createPortal(
-    <ModalOverlay title={props.title} onClose={props.onClose} onClick={props.onClick}>
+    <ModalOverlay title={props.title} onClose={props.onClose} onClick={props.onClose}>
       <div className={styles.modal}>
         <div className={styles.modalHeader}>
           <p className="text text_type_main-large">{props.title}</p>
-          <div className={styles.modalCloseBtnWrapper}>
+          <div className={styles.modalCloseBtnWrapper} onClick={props.onClose}>
             <CloseIcon type="primary" onClick={props.onClose} />
           </div>
         </div>
