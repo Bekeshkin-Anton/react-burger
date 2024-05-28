@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './burger-ingredients.module.scss';
 import Tabs from '../tabs/tabs';
-import IngredientCard from './ingredient-card/ingredient-card';
-import Modal from '../modal/modal';
-import IngredientDetails from '../Ingredient-details/ingredient-details';
 import IngredientCategory from './ingredient-category/ingredient-category';
 
 export default function BurgerIngredients(props) {

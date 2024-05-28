@@ -10,7 +10,6 @@ export default function IngredientCard({ ...props }) {
     setIsModalOpened(true);
   };
   const onCloseModal = (e) => {
-    e.stopPropagation();
     setIsModalOpened(false);
   };
 
