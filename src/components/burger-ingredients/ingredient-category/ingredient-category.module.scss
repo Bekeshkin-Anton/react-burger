@@ -1,0 +1,9 @@
+.burgerIngredientsField {
+  margin-top: 24px;
+  display: grid;
+  column-gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.burgerIngredients__field {
+  margin-top: 40px;
+}

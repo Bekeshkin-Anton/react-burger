@@ -13,6 +13,9 @@ function App() {
     const apiUrl = 'https://norma.nomoreparties.space/api/ingredients';
     fetch(apiUrl)
       .then((response) => {
+        if (!response.ok) {
+          console.log('Ошибка response. Status: ' + response);
+        }
         return response.json();
       })
       .then((data) => {

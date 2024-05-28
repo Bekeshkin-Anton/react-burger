@@ -9,12 +9,11 @@ export default function IngredientCard({ ...props }) {
   const onShowModal = () => {
     setIsModalOpened(true);
   };
-  const onCloseModal = () => {
+  const onCloseModal = (e) => {
+    e.stopPropagation();
     setIsModalOpened(false);
   };
-  useEffect(() => {
-    console.log(isModalOpened);
-  }, [isModalOpened]);
+
   const classChanger = props.count === 0 ? 'counter' : 'counter_show';
 
   return (
@@ -33,7 +32,7 @@ export default function IngredientCard({ ...props }) {
           </div>
         </div>
         <div className="pb-10 pt-4">
-          <p className="text text_type_main-default">{props.title}</p>
+          <p className="text text_type_main-default">{props.ingredientName}</p>
         </div>
       </div>
       {isModalOpened && (
