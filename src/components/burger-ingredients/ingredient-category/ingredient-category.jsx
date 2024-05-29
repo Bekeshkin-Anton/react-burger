@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ingredient-category.module.scss';
 import IngredientCard from '../ingredient-card/ingredient-card';
+import propTypes from 'prop-types';
 
 export default function IngredientCategory({ ...props }) {
   const { list } = props;
@@ -29,3 +30,8 @@ export default function IngredientCategory({ ...props }) {
     </div>
   );
 }
+
+IngredientCategory.propTypes = {
+  categoryTitle: propTypes.string,
+  itemType: propTypes.string,
+};

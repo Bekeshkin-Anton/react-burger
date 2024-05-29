@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ingredient-details.module.scss';
+import propTypes from 'prop-types';
+
 export default function IngredientDetails({ ...props }) {
   return (
     <>
@@ -30,3 +32,11 @@ export default function IngredientDetails({ ...props }) {
     </>
   );
 }
+IngredientDetails.propTypes = {
+  image: propTypes.string,
+  ingredientName: propTypes.string,
+  ingredientCalories: propTypes.number,
+  ingredientsProteins: propTypes.number,
+  ingredientFat: propTypes.number,
+  ingredientsCarbohydrates: propTypes.number,
+};

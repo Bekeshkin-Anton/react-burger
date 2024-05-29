@@ -3,6 +3,7 @@ import styles from './ingredient-card.module.scss';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../../modal/modal';
 import IngredientDetails from '../../Ingredient-details/ingredient-details';
+import propTypes from 'prop-types';
 
 export default function IngredientCard({ ...props }) {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -42,3 +43,9 @@ export default function IngredientCard({ ...props }) {
     </>
   );
 }
+IngredientCard.propTypes = {
+  count: propTypes.number,
+  image: propTypes.string,
+  price: propTypes.number,
+  ingredientName: propTypes.string,
+};
