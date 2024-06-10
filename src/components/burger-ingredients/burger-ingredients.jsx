@@ -110,6 +110,7 @@ function BurgerIngredients() {
         </div>
         {isOpenIngredient && (
           <Modal onClose={handleCloseModalIngredient} title="Детали ингредиента">
+            {/* <IngredientDetails /> */}
             <IngredientDetails />
           </Modal>
         )}
