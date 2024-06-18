@@ -21,7 +21,6 @@ import { useDrop } from "react-dnd";
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((state) => state.ingredientsConstructor);
-  console.log();
   const { isOpenOrder } = useSelector((state) => state.orderDetails);
   const saucesAndMains = useMemo(() => ingredients.filter((m) => m.type !== "bun"), [ingredients]);
 
@@ -91,13 +90,16 @@ function BurgerConstructor() {
             ingredient={bun}
           />
         )}
-        <ul className={`${burgerStyles.ingredient__list} pt-5`}>
+        <div className={`${burgerStyles.ingredient__list} pt-5`}>
           {ingredients.map((item) => (
-            <li key={item.uniqueId} className={`${burgerStyles.ingredient__item} pb-4`}>
-              <BurgerIngredient ingredient={item} moveItemIngredient={moveItemIngredient} />
-            </li>
+            <BurgerIngredient
+              key={item.uniqueId}
+              className={`${burgerStyles.ingredient__item} pb-4`}
+              ingredient={item}
+              moveItemIngredient={moveItemIngredient}
+            />
           ))}
-        </ul>
+        </div>
         {bun && (
           <ConstructorElement
             type="bottom"

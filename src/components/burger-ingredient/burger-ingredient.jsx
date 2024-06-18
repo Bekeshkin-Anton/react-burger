@@ -8,6 +8,7 @@ import { useRef } from "react";
 
 const BurgerIngredient = ({ ingredient, moveItemIngredient }) => {
   const id = ingredient.key;
+
   const { ingredients } = useSelector((state) => state.ingredientsConstructor);
 
   const index = ingredients.indexOf(ingredient);
@@ -17,6 +18,7 @@ const BurgerIngredient = ({ ingredient, moveItemIngredient }) => {
     return dispatch({
       type: DELETE_INGREDIENTS_CONSTRUCTOR,
       key: ingredient.key,
+      uniqueId: ingredient.uniqueId,
     });
   };
 
