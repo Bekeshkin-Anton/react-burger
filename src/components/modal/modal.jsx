@@ -1,30 +1,50 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
-import styles from './modal.module.scss';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import ModalOverlay from '../modal-overlay/modal-overlay';
-import propTypes from 'prop-types';
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import ModalOverlay from "../modal-overlay/modal-overlay";
+import modal from "../modal/modal.module.scss";
+import PropTypes from "prop-types";
 
-export default function Modal({ ...props }) {
-  const modalRoot = document.getElementById('react-modal');
-  return createPortal(
+const modalRoot = document.getElementById("react-modals");
+
+const Modal = ({ children, onClose, title }) => {
+  useEffect(() => {
+    const closeByEscape = (evt) => {
+      if (evt.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", closeByEscape);
+    return () => {
+      document.removeEventListener("keydown", closeByEscape);
+    };
+  }, [onClose]);
+
+  return ReactDOM.createPortal(
     <>
-      <ModalOverlay title={props.title} onClose={props.onClose} onClick={props.onClose} />
-      <div className={styles.modal}>
-        <div className={styles.modalHeader}>
-          <p className="text text_type_main-large">{props.title}</p>
-          <div className={styles.modalCloseBtnWrapper} onClick={props.onClose}>
-            <CloseIcon type="primary" />
+      <div className={`${modal.container} pt-5`}>
+        <div className={`${modal.item} pt-5`}>
+          <div className={modal.title_close_container}>
+            <div className={`${modal.title_container}`}>
+              {title && <h2 className={`${modal.title} text text_type_main-large`}>{title}</h2>}
+            </div>
+            <button onClick={onClose} className={modal.button_close}>
+              <CloseIcon />
+            </button>
           </div>
         </div>
-        {props.children}
+        {children}
       </div>
+      <ModalOverlay onClose={onClose} />
     </>,
     modalRoot
   );
-}
-Modal.propTypes = {
-  title: propTypes.string,
-  onClose: propTypes.func,
-  children: propTypes.node,
 };
+
+Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string,
+};
+
+export default Modal;
