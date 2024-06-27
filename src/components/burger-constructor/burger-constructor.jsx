@@ -1,5 +1,5 @@
 import { ConstructorElement, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import burgerStyles from "./burger-constructor.module.scss";
+import burgerStyles from "./burger-constructor.module.css";
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import { useMemo, useCallback } from "react";
 import Modal from "../modal/modal";
@@ -17,11 +17,16 @@ import {
   clearConstructorBun,
 } from "../../services/actions/actions";
 import { useDrop } from "react-dnd";
+import { useNavigate } from "react-router-dom";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { bun, ingredients } = useSelector((state) => state.ingredientsConstructor);
+  const { user } = useSelector((state) => state.userReducer);
   const { isOpenOrder } = useSelector((state) => state.orderDetails);
+
   const saucesAndMains = useMemo(() => ingredients.filter((m) => m.type !== "bun"), [ingredients]);
 
   const orderIngredients = useMemo(() => ingredients.map((m) => m._id), [ingredients]);
@@ -43,8 +48,13 @@ function BurgerConstructor() {
       isActive: monitor.canDrop() && monitor.isOver(),
     }),
   });
+
   const handleOpenModal = () => {
+    if (user === null) {
+      navigate("/login", { replace: true });
+    }
     dispatch(openModalOrderDetails());
+
     const allIngredients = [...orderIngredients, bun._id];
     dispatch(postOrderFetch(allIngredients));
   };
@@ -90,16 +100,13 @@ function BurgerConstructor() {
             ingredient={bun}
           />
         )}
-        <div className={`${burgerStyles.ingredient__list} pt-5`}>
+        <ul className={`${burgerStyles.ingredient__list} pt-5`}>
           {ingredients.map((item) => (
-            <BurgerIngredient
-              key={item.uniqueId}
-              className={`${burgerStyles.ingredient__item} pb-4`}
-              ingredient={item}
-              moveItemIngredient={moveItemIngredient}
-            />
+            <li key={item.uniqueId} className={`${burgerStyles.ingredient__item} pb-4`}>
+              <BurgerIngredient ingredient={item} moveItemIngredient={moveItemIngredient} />
+            </li>
           ))}
-        </div>
+        </ul>
         {bun && (
           <ConstructorElement
             type="bottom"

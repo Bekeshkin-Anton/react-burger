@@ -4,21 +4,21 @@ import {
   POST_ORDER_FAILED,
   MODAL_ORDER_DETAILS_OPEN,
   MODAL_ORDER_DETAILS_CLOSE,
-} from '../actions/actions'
+} from "../actions/actions";
 
 const initialState = {
   currOrder: null,
   orderRequest: false,
   orderFailed: false,
-  isOpenOrder: false
-}
+  isOpenOrder: false,
+};
 
 export const orderDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_ORDER_REQUEST: {
       return {
         ...state,
-        orderRequest: true
+        orderRequest: true,
       };
     }
     case POST_ORDER_SUCCESS: {
@@ -33,19 +33,19 @@ export const orderDetailsReducer = (state = initialState, action) => {
       return {
         ...state,
         orderFailed: true,
-        orderRequest: false
+        orderRequest: false,
       };
     }
     case MODAL_ORDER_DETAILS_OPEN: {
       return {
         ...state,
-        isOpenOrder: true
+        isOpenOrder: true,
       };
     }
     case MODAL_ORDER_DETAILS_CLOSE: {
       return {
         ...state,
-        isOpenOrder: false
+        isOpenOrder: false,
       };
     }
     default: {

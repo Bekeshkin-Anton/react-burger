@@ -1,9 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import ingredientsStyles from "./burger-ingredients.module.scss";
+import ingredientsStyles from "./burger-ingredients.module.css";
 import IngredientItem from "../ingredient-item/ingredient-item";
-import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getData,
@@ -13,17 +11,22 @@ import {
   deleteTabIngredient,
 } from "../../services/actions/actions";
 import { useInView } from "react-intersection-observer";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function BurgerIngredients() {
   const { burgerIngredients, burgerIngredientsRequest, burgerIngredientsFailed } = useSelector((state) => state.burgerIngredients);
-  const { isOpenIngredient } = useSelector((state) => state.ingredientDetails);
+
   const dispatch = useDispatch();
+
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
 
   const [current, setCurrent] = useState("one");
+
   const bun = "bun";
   const sauce = "sauce";
   const main = "main";
@@ -32,11 +35,6 @@ function BurgerIngredients() {
     dispatch(openModalIngredientDetails());
     dispatch(returnTabIngredient(item));
   }
-
-  const handleCloseModalIngredient = () => {
-    dispatch(closeModalIngredientDetails());
-    dispatch(deleteTabIngredient());
-  };
 
   const buns = useMemo(() => burgerIngredients.filter((m) => m.type === bun), [burgerIngredients]);
 
@@ -59,7 +57,7 @@ function BurgerIngredients() {
   if (burgerIngredientsFailed) {
     return <p>Произошла ошибка при получении данных</p>;
   } else if (burgerIngredientsRequest) {
-    return <p>Загрузка данных...</p>;
+    return <p>Загрузка...</p>;
   } else {
     return (
       <>
@@ -81,9 +79,14 @@ function BurgerIngredients() {
             </h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`} id="one" ref={oneRef}>
               {buns.map((ingredients) => (
-                <li key={ingredients._id}>
+                <Link
+                  key={ingredients._id}
+                  className={`${ingredientsStyles.ingredient__link} `}
+                  to={`/ingredients/${ingredients._id}`}
+                  state={{ background: location }}
+                >
                   <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -91,9 +94,14 @@ function BurgerIngredients() {
             <h2 className="text text_type_main-medium pb-1">Соусы</h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`} id="two" ref={twoRef}>
               {sauces.map((ingredients) => (
-                <li key={ingredients._id}>
+                <Link
+                  key={ingredients._id}
+                  to={`/ingredients/${ingredients._id}`}
+                  state={{ background: location }}
+                  className={`${ingredientsStyles.ingredient__link} `}
+                >
                   <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -101,19 +109,18 @@ function BurgerIngredients() {
             <h2 className="text text_type_main-medium pb-1">Начинки</h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`} id="three">
               {fillings.map((ingredients) => (
-                <li key={ingredients._id}>
+                <Link
+                  key={ingredients._id}
+                  to={`/ingredients/${ingredients._id}`}
+                  state={{ background: location }}
+                  className={`${ingredientsStyles.ingredient__link} `}
+                >
                   <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </li>
+                </Link>
               ))}
             </ul>
           </div>
         </div>
-        {isOpenIngredient && (
-          <Modal onClose={handleCloseModalIngredient} title="Детали ингредиента">
-            {/* <IngredientDetails /> */}
-            <IngredientDetails />
-          </Modal>
-        )}
       </>
     );
   }
