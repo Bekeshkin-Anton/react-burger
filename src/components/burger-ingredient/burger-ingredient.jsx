@@ -1,5 +1,5 @@
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import burgerIngredient from "./burger-ingredient.module.scss";
+import burgerIngredient from "./burger-ingredient.module.css";
 import { burgerIngredientTypes } from "../../utils/prop-types";
 import { DELETE_INGREDIENTS_CONSTRUCTOR } from "../../services/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import { useRef } from "react";
 
 const BurgerIngredient = ({ ingredient, moveItemIngredient }) => {
   const id = ingredient.key;
-
   const { ingredients } = useSelector((state) => state.ingredientsConstructor);
 
   const index = ingredients.indexOf(ingredient);
