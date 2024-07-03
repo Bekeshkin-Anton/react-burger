@@ -22,7 +22,7 @@ function BurgerIngredients() {
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(getData());
+    
   }, [dispatch]);
 
   const [current, setCurrent] = useState("one");

@@ -6,7 +6,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 function HomePage() {
   return (
-    <>
+    
       <main className={styles.main}>
         <DndProvider backend={HTML5Backend}>
           <section className={styles.ingredients}>
@@ -18,7 +18,7 @@ function HomePage() {
           </section>
         </DndProvider>
       </main>
-    </>
+    
   );
 }
 

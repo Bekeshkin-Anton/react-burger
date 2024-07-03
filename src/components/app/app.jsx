@@ -17,17 +17,7 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import { getData } from "../../services/actions/actions";
 import ProfileOrdersPage from "../../pages/profileOrders";
-import {
-  home,
-  ingredientsId,
-  login,
-  profile,
-  ordersInProfile,
-  register,
-  forgotPass,
-  resetPass,
-  orders,
-} from "../../utils/constants";
+import { home, ingredientsId, login, profile, ordersInProfile, register, forgotPass, resetPass, orders } from "../../utils/constants";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,31 +40,13 @@ function App() {
       <Routes location={background || location}>
         <Route path={home} element={<HomePage />} />
         <Route path={ingredientsId} element={<IngredientDetailsPage />} />
-        <Route
-          path={login}
-          element={<OnlyUnAuth component={<LoginPage />} />}
-        />
-        <Route
-          path={profile}
-          element={<OnlyAuth component={<ProfilePage />} />}
-        >
-          <Route
-            path={ordersInProfile}
-            element={<OnlyAuth component={<ProfileOrdersPage />} />}
-          />
+        <Route path={login} element={<OnlyUnAuth component={<LoginPage />} />} />
+        <Route path={profile} element={<OnlyAuth component={<ProfilePage />} />}>
+          <Route path={ordersInProfile} element={<OnlyAuth component={<ProfileOrdersPage />} />} />
         </Route>
-        <Route
-          path={register}
-          element={<OnlyUnAuth component={<RegisterPage />} />}
-        />
-        <Route
-          path={forgotPass}
-          element={<OnlyUnAuth component={<ForgotPass />} />}
-        />
-        <Route
-          path={resetPass}
-          element={<OnlyUnAuth component={<ResetPass />} />}
-        />
+        <Route path={register} element={<OnlyUnAuth component={<RegisterPage />} />} />
+        <Route path={forgotPass} element={<OnlyUnAuth component={<ForgotPass />} />} />
+        <Route path={resetPass} element={<OnlyUnAuth component={<ResetPass />} />} />
         <Route path={orders} element={<OrderFeedPage />} />
       </Routes>
       {background && (
@@ -82,11 +54,7 @@ function App() {
           <Route
             path={ingredientsId}
             element={
-              <Modal
-                onClose={closeModalIngredientDetails}
-                title="Детали ингредиента"
-                s
-              >
+              <Modal onClose={closeModalIngredientDetails} title="Детали ингредиента">
                 <IngredientDetails />
               </Modal>
             }
