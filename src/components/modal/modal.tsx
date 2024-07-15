@@ -12,14 +12,9 @@ interface IModalProps {
   title?: string;
 }
 
-interface IKeyboardEvent {
-  key: string;
-}
-
 export const Modal: FC<IModalProps> = ({ children, onClose, title }) => {
-
   useEffect(() => {
-    const closeByEscape = (event: IKeyboardEvent) => {
+    const closeByEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
       }
@@ -30,24 +25,26 @@ export const Modal: FC<IModalProps> = ({ children, onClose, title }) => {
     };
   }, [onClose]);
 
-  return modalRoot && ReactDOM.createPortal(
-    <>
-      <div className={`${modal.container} pt-5`}>
-        <div className={`${modal.item} pt-5`}>
-          <div className={modal.title_close_container}>
-            <div className={`${modal.title_container}`}>
-              {title &&
-                <h2 className={`${modal.title} text text_type_main-large`}>{title}</h2>}
+  return (
+    modalRoot &&
+    ReactDOM.createPortal(
+      <>
+        <div className={`${modal.container} pt-5`}>
+          <div className={`${modal.item} pt-5`}>
+            <div className={modal.title_close_container}>
+              <div className={`${modal.title_container}`}>
+                {title && <h2 className={`${modal.title} text text_type_main-large`}>{title}</h2>}
+              </div>
+              <button onClick={onClose} className={modal.button_close}>
+                <CloseIcon type="primary" />
+              </button>
             </div>
-            <button onClick={onClose} className={modal.button_close}>
-              <CloseIcon type="primary" />
-            </button>
           </div>
+          {children}
         </div>
-        {children}
-      </div>
-      <ModalOverlay onClose={onClose} />
-    </>,
-    modalRoot
+        <ModalOverlay onClose={onClose} />
+      </>,
+      modalRoot
+    )
   );
 };
