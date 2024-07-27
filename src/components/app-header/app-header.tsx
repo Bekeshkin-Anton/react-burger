@@ -1,4 +1,9 @@
-import { Logo, BurgerIcon, ProfileIcon, ListIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Logo,
+  BurgerIcon,
+  ProfileIcon,
+  ListIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from "./app-header.module.css";
 import { NavLink, useMatch } from "react-router-dom";
 import { FC } from "react";
@@ -10,7 +15,7 @@ export const AppHeader: FC = () => {
       : `${headerStyles.header_link} text_type_main-default  text_color_inactive pl-2`;
   const homeLink = useMatch("/");
   const profileLink = useMatch("/profile");
-  const orderFeedLink = useMatch("/orders");
+  const orderFeedLink = useMatch("/feed");
 
   return (
     <header className={headerStyles.header}>
@@ -21,19 +26,31 @@ export const AppHeader: FC = () => {
         <ul className={`${headerStyles.header_list}`}>
           <li className={`${headerStyles.header_item} pl-5 pr-5`}>
             <NavLink to={{ pathname: "/" }} className={style}>
-              {homeLink ? <BurgerIcon type={"primary"} /> : <BurgerIcon type={"secondary"} />}
+              {homeLink ? (
+                <BurgerIcon type={"primary"} />
+              ) : (
+                <BurgerIcon type={"secondary"} />
+              )}
               Конструктор
             </NavLink>
           </li>
           <li className={`${headerStyles.header_item} pl-5`}>
-            <NavLink to={{ pathname: "/orders" }} className={style}>
-              {orderFeedLink ? <ListIcon type={"primary"} /> : <ListIcon type={"secondary"} />}
+            <NavLink to={{ pathname: "/feed" }} className={style}>
+              {orderFeedLink ? (
+                <ListIcon type={"primary"} />
+              ) : (
+                <ListIcon type={"secondary"} />
+              )}
               Лента заказов
             </NavLink>
           </li>
           <li className={`${headerStyles.header_item} pl-5 pr-5`}>
             <NavLink to={{ pathname: "/profile" }} className={style}>
-              {profileLink ? <ProfileIcon type={"primary"} /> : <ProfileIcon type={"secondary"} />}
+              {profileLink ? (
+                <ProfileIcon type={"primary"} />
+              ) : (
+                <ProfileIcon type={"secondary"} />
+              )}
               Личный кабинет
             </NavLink>
           </li>
@@ -41,4 +58,4 @@ export const AppHeader: FC = () => {
       </nav>
     </header>
   );
-};
+}
