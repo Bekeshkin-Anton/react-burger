@@ -1,6 +1,6 @@
 import orderDetails from "./order-details.module.css";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
+import Loader from "../loader/loader";
 import { useAppSelector } from '../../services/index'
 
 function OrderDetails() {
@@ -10,7 +10,8 @@ function OrderDetails() {
 
   if (orderFailed) {
     return <p>Произошла ошибка при получении данных</p>;
-  
+  } else if (orderRequest) {
+    return <Loader />;
   } else {
     return (
       <ul className={`${orderDetails.container} m-4 pb-15`}>

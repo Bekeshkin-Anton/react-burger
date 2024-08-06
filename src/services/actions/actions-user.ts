@@ -2,6 +2,10 @@ import { getUser, login, postRegister, logOut, patchUser } from "../../api/api";
 import { IUser, IUserLogin } from "../../utils/types";
 import { AppDispatch } from "../../services/index";
 
+export const GET_USER_REQUEST: "GET_DATA_REQUEST" = "GET_DATA_REQUEST";
+export const GET_USER_SUCCESS: "GET_DATA_SUCCESS" = "GET_DATA_SUCCESS";
+export const GET_USER_FAILED: "GET_DATA_FAILED" = "GET_DATA_FAILED";
+
 export const PATCH_USER_REQUEST: "PATCH_DATA_REQUEST" = "PATCH_DATA_REQUEST";
 export const PATCH_USER_SUCCESS: "PATCH_DATA_SUCCESS" = "PATCH_DATA_SUCCESS";
 export const PATCH_USER_FAILED: "PATCH_DATA_FAILED" = "PATCH_DATA_FAILED";

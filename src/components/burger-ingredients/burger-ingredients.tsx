@@ -7,7 +7,7 @@ import { openModalIngredientDetails, returnTabIngredient } from "../../services/
 
 import { useInView } from "react-intersection-observer";
 import { useLocation, Link } from "react-router-dom";
-
+import Loader from "../loader/loader";
 import { IIngredient } from "../../utils/types";
 
 function BurgerIngredients() {
@@ -49,6 +49,8 @@ function BurgerIngredients() {
 
   if (burgerIngredientsFailed) {
     return <p>Произошла ошибка при получении данных</p>;
+  } else if (burgerIngredientsRequest) {
+    return <Loader />;
   } else {
     return (
       <>
