@@ -1,41 +1,35 @@
-import {
-  wsConnecting,
-  wsOpen,
-  wsClose,
-  wsMessage,
-  wsError,
-} from '../actions/actions-ws';
-import { WebsocketStatus } from '../../utils/orders';
-import { createReducer } from '@reduxjs/toolkit';
-import { IOrder } from '../../utils/types';
+import { wsConnecting, wsOpen, wsClose, wsMessage, wsError } from "../actions/actions-ws";
+import { WebsocketStatus } from "../../utils/orders";
+import { createReducer } from "@reduxjs/toolkit";
+import { IOrder } from "../../utils/types";
 
 export type wsState = {
-  status: string,
-  orders: IOrder[],
-  connectionError: string,
-  loader: boolean,
-  total: number | null,
-  totalToday: number | null
+  status: string;
+  orders: IOrder[];
+  connectionError: string;
+  loader: boolean;
+  total: number | null;
+  totalToday: number | null;
 };
 
-const initialState: wsState = {
+export const initialState: wsState = {
   status: WebsocketStatus.OFFLINE,
   orders: [],
-  connectionError: '',
+  connectionError: "",
   loader: false,
   total: null,
-  totalToday: null
+  totalToday: null,
 };
 
 export const ordersReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(wsConnecting, state => {
+    .addCase(wsConnecting, (state) => {
       state.status = WebsocketStatus.CONNECTING;
       state.loader = true;
     })
-    .addCase(wsOpen, state => {
+    .addCase(wsOpen, (state) => {
       state.status = WebsocketStatus.ONLINE;
-      state.connectionError = '';
+      state.connectionError = "";
       state.loader = true;
     })
     .addCase(wsMessage, (state, { payload }: any) => {
@@ -44,11 +38,10 @@ export const ordersReducer = createReducer(initialState, (builder) => {
       state.totalToday = payload.totalToday ?? null;
       state.loader = false;
     })
-    .addCase(wsClose, state => {
+    .addCase(wsClose, (state) => {
       state.status = WebsocketStatus.OFFLINE;
     })
     .addCase(wsError, (state, { payload }) => {
-      state.connectionError = payload ?? '';
-    })
-
-})
+      state.connectionError = payload ?? "";
+    });
+});
