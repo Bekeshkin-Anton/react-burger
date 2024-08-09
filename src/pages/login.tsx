@@ -1,14 +1,14 @@
-import log from "../pages/log.module.css";
-import { EmailInput, Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useRef, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signIn } from "../services/actions/actions-user";
-import { register, forgotPass } from "../utils/constants";
-import { useForm } from "../hooks/useForm";
+import log from '../pages/log.module.css';
+import { EmailInput, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useState, useRef, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../services/actions/actions-user';
+import { register, forgotPass } from '../utils/constants';
+import { useForm } from '../hooks/useForm';
 
 function LoginPage() {
-  const { values, handleChange } = useForm({ email: "", password: "" });
+  const { values, handleChange } = useForm({ email: '', password: '' });
   const dispatch = useDispatch();
   const inputRef = useRef(null);
   const navigate = useNavigate();
@@ -31,32 +31,32 @@ function LoginPage() {
     <div className={log.container}>
       <form className={log.form} onSubmit={onClickSubmit}>
         <h2 className={`${log.title} text text_type_main-medium pb-3`}>Вход</h2>
-        <fieldset className={`${log.input_items} pb-3 pt-3`}>
+        <fieldset data-cy="login-inputs" className={`${log.input_items} pb-3 pt-3`}>
           <EmailInput
             onChange={handleChange}
             value={values.email}
-            name={"email"}
+            name={'email'}
             isIcon={false}
-            placeholder={"E-mail"}
+            placeholder={'E-mail'}
             autoComplete="username"
           />
           <Input
-            type={isVisible ? "text" : "password"}
-            placeholder={"Пароль"}
+            type={isVisible ? 'text' : 'password'}
+            placeholder={'Пароль'}
             autoComplete="current-password"
             onChange={handleChange}
-            icon={isVisible ? "ShowIcon" : "HideIcon"}
+            icon={isVisible ? 'ShowIcon' : 'HideIcon'}
             value={values.password}
-            name={"password"}
+            name={'password'}
             error={false}
             ref={inputRef}
             onIconClick={() => setVisible(!isVisible)}
-            errorText={"Ошибка"}
-            size={"default"}
+            errorText={'Ошибка'}
+            size={'default'}
           />
         </fieldset>
         <div className={`${log.button} pt-3 mb-15`}>
-          <Button htmlType="submit" type="primary" size="medium">
+          <Button data-cy="login-in-account-btn" htmlType="submit" type="primary" size="medium">
             Войти
           </Button>
         </div>

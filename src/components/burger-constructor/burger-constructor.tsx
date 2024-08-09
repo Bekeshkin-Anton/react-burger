@@ -91,7 +91,7 @@ function BurgerConstructor() {
         {bun && <ConstructorElement type="top" isLocked={true} text={`${bun.name} (верх)`} price={bun.price} thumbnail={bun.image} />}
         <ul className={`${burgerStyles.ingredient__list} pt-5`}>
           {ingredients.map((item) => (
-            <li key={item.keyUuid} className={`${burgerStyles.ingredient__item} pb-4`}>
+            <li data-cy="ingredient-item" key={item.keyUuid} className={`${burgerStyles.ingredient__item} pb-4`}>
               <BurgerIngredient ingredient={item} moveItemIngredient={moveItemIngredient} />
             </li>
           ))}

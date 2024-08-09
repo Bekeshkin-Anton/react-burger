@@ -54,14 +54,14 @@ function BurgerIngredients() {
   } else {
     return (
       <div data-cy="BurgerIngredients">
-        <div style={{ display: 'flex' }} className="pt-5 pb-5">
-          <Tab value="one" active={oneInView === true} onClick={tabStorage}>
+        <div data-cy="BurgerIngredientsTabsWrapper" style={{ display: 'flex' }} className="pt-5 pb-5">
+          <Tab data-cy="Tab-1" value="one" active={oneInView === true} onClick={tabStorage}>
             Булки
           </Tab>
-          <Tab value="two" active={twoInView === true} onClick={tabStorage}>
+          <Tab data-cy="Tab-2" value="two" active={twoInView === true} onClick={tabStorage}>
             Соусы
           </Tab>
-          <Tab value="three" active={threeInView === true} onClick={tabStorage}>
+          <Tab data-cy="Tab-3" value="three" active={threeInView === true} onClick={tabStorage}>
             Начинки
           </Tab>
         </div>
@@ -72,14 +72,16 @@ function BurgerIngredients() {
             </h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`} id="one" ref={oneRef}>
               {buns.map((ingredients: IIngredient) => (
-                <Link
-                  key={ingredients._id}
-                  className={`${ingredientsStyles.ingredient__link} `}
-                  to={`/ingredients/${ingredients._id}`}
-                  state={{ background: location }}
-                >
-                  <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </Link>
+                <div data-cy="link">
+                  <Link
+                    key={ingredients._id}
+                    className={`${ingredientsStyles.ingredient__link} `}
+                    to={`/ingredients/${ingredients._id}`}
+                    state={{ background: location }}
+                  >
+                    <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
+                  </Link>
+                </div>
               ))}
             </ul>
           </div>
@@ -89,14 +91,16 @@ function BurgerIngredients() {
             </h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`} ref={twoRef}>
               {sauces.map((ingredients: IIngredient) => (
-                <Link
-                  key={ingredients._id}
-                  to={`/ingredients/${ingredients._id}`}
-                  state={{ background: location }}
-                  className={`${ingredientsStyles.ingredient__link} `}
-                >
-                  <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </Link>
+                <div data-cy="link">
+                  <Link
+                    key={ingredients._id}
+                    to={`/ingredients/${ingredients._id}`}
+                    state={{ background: location }}
+                    className={`${ingredientsStyles.ingredient__link} `}
+                  >
+                    <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
+                  </Link>
+                </div>
               ))}
             </ul>
           </div>
@@ -106,14 +110,16 @@ function BurgerIngredients() {
             </h2>
             <ul className={`${ingredientsStyles.ingredient__list} pt-5`}>
               {fillings.map((ingredients: IIngredient) => (
-                <Link
-                  key={ingredients._id}
-                  to={`/ingredients/${ingredients._id}`}
-                  state={{ background: location }}
-                  className={`${ingredientsStyles.ingredient__link} `}
-                >
-                  <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
-                </Link>
+                <div data-cy="link">
+                  <Link
+                    key={ingredients._id}
+                    to={`/ingredients/${ingredients._id}`}
+                    state={{ background: location }}
+                    className={`${ingredientsStyles.ingredient__link} `}
+                  >
+                    <IngredientItem ingredient={ingredients} onTab={handleOpenModalIngredient} />
+                  </Link>
+                </div>
               ))}
             </ul>
           </div>

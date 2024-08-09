@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2NiOGE3ODU2Nzc3MDAxYmIxZTFjNSIsImlhdCI6MTcyMzIwODQ3NywiZXhwIjoxNzIzMjA5Njc3fQ.JTKtA0F27XdLNldSgfMxYpJ1jezlrVMEIFcNd7QeHXg",
+  "refreshToken": "1230495db1906438d6d98061b3ee054da42286b7a1973caa7ac8b922717ad56e646104d9964c3007",
+  "user": {
+    "email": "plut.mzk@yandex.ru",
+    "name": "Антон"
+  }
+}
