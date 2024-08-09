@@ -1,22 +1,22 @@
-import { ConstructorElement, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import burgerStyles from "./burger-constructor.module.css";
-import BurgerIngredient from "../burger-ingredient/burger-ingredient";
-import { useMemo, useCallback } from "react";
-import { Modal } from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
-import { TotalPrice } from "../total-price/total-price";
-import { useAppSelector, useAppDispatch } from "../../services/index";
+import { ConstructorElement, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import burgerStyles from './burger-constructor.module.css';
+import BurgerIngredient from '../burger-ingredient/burger-ingredient';
+import { useMemo, useCallback } from 'react';
+import { Modal } from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
+import { TotalPrice } from '../total-price/total-price';
+import { useAppSelector, useAppDispatch } from '../../services/index';
 import {
   addIngredients,
   addIngredientsBun,
   moveIngredientItem,
   clearConstructorIngredients,
   clearConstructorBun,
-} from "../../services/actions/ingredients-constructor-actions";
-import { postOrderFetch, openModalOrderDetails, closeModalOrderDetails } from "../../services/actions/order-details-actions";
-import { IIngredient } from "../../utils/types";
-import { useDrop } from "react-dnd";
-import { useNavigate } from "react-router-dom";
+} from '../../services/actions/ingredients-constructor-actions';
+import { postOrderFetch, openModalOrderDetails, closeModalOrderDetails } from '../../services/actions/order-details-actions';
+import { IIngredient } from '../../utils/types';
+import { useDrop } from 'react-dnd';
+import { useNavigate } from 'react-router-dom';
 
 function BurgerConstructor() {
   const dispatch = useAppDispatch();
@@ -24,20 +24,20 @@ function BurgerConstructor() {
   const { bun, ingredients } = useAppSelector((state) => state.rootReducer.ingredientsConstructor);
   const { user } = useAppSelector((state) => state.rootReducer.userReducer);
   const { isOpenOrder } = useAppSelector((state) => state.rootReducer.orderDetails);
-  const saucesAndMains = useMemo(() => ingredients.filter((m) => m.type !== "bun"), [ingredients]);
+  const saucesAndMains = useMemo(() => ingredients.filter((m) => m.type !== 'bun'), [ingredients]);
 
   const orderIngredients: string[] = useMemo(() => ingredients.map((m) => m._id), [ingredients]);
 
   function onDropHandler(item: IIngredient) {
-    if (item.type === "bun") {
+    if (item.type === 'bun') {
       return dispatch(addIngredientsBun(item));
-    } else if (item.type !== "bun") {
+    } else if (item.type !== 'bun') {
       return dispatch(addIngredients(item));
     }
   }
 
   const [{ isActive }, drop] = useDrop({
-    accept: "ingredient",
+    accept: 'ingredient',
     drop(itemId: IIngredient) {
       onDropHandler(itemId);
     },
@@ -48,10 +48,10 @@ function BurgerConstructor() {
 
   const handleOpenModal = () => {
     if (!user) {
-      navigate("/login", { replace: true });
+      navigate('/login', { replace: true });
     } else {
       dispatch(openModalOrderDetails());
-      const idBun: string = bun ? bun?._id : "";
+      const idBun: string = bun ? bun?._id : '';
       const allIngredients: string[] = [...orderIngredients, idBun];
       dispatch(postOrderFetch(allIngredients));
     }
@@ -85,7 +85,7 @@ function BurgerConstructor() {
   );
 
   return (
-    <div>
+    <div data-cy="BurgerConstructor">
       <div className={`${burgerStyles.ingredient} pl-4 pb-5`} ref={drop}>
         <p className={`${burgerStyles.info} ${isActive && burgerStyles.flex}`}>Булочки сверху и снизу, соусы и начинки - посередине</p>
         {bun && <ConstructorElement type="top" isLocked={true} text={`${bun.name} (верх)`} price={bun.price} thumbnail={bun.image} />}

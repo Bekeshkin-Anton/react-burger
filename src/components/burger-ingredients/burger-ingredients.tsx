@@ -1,14 +1,14 @@
-import { useState, useMemo } from "react";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import ingredientsStyles from "./burger-ingredients.module.css";
-import IngredientItem from "../ingredient-item/ingredient-item";
-import { useAppDispatch, useAppSelector } from "../../services/index";
-import { openModalIngredientDetails, returnTabIngredient } from "../../services/actions/ingredient-deteils-actions";
+import { useState, useMemo } from 'react';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import ingredientsStyles from './burger-ingredients.module.css';
+import IngredientItem from '../ingredient-item/ingredient-item';
+import { useAppDispatch, useAppSelector } from '../../services/index';
+import { openModalIngredientDetails, returnTabIngredient } from '../../services/actions/ingredient-deteils-actions';
 
-import { useInView } from "react-intersection-observer";
-import { useLocation, Link } from "react-router-dom";
-import Loader from "../loader/loader";
-import { IIngredient } from "../../utils/types";
+import { useInView } from 'react-intersection-observer';
+import { useLocation, Link } from 'react-router-dom';
+import Loader from '../loader/loader';
+import { IIngredient } from '../../utils/types';
 
 function BurgerIngredients() {
   const { burgerIngredients, burgerIngredientsRequest, burgerIngredientsFailed } = useAppSelector(
@@ -18,11 +18,11 @@ function BurgerIngredients() {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  const [current, setCurrent] = useState<string>("one");
+  const [current, setCurrent] = useState<string>('one');
 
-  const bun = "bun";
-  const sauce = "sauce";
-  const main = "main";
+  const bun = 'bun';
+  const sauce = 'sauce';
+  const main = 'main';
 
   function handleOpenModalIngredient(item: IIngredient) {
     dispatch(openModalIngredientDetails());
@@ -39,7 +39,7 @@ function BurgerIngredients() {
     setCurrent(selectTab);
     const item = document.getElementById(selectTab);
     if (item) {
-      return item.scrollIntoView({ behavior: "auto" });
+      return item.scrollIntoView({ behavior: 'auto' });
     }
   };
 
@@ -53,8 +53,8 @@ function BurgerIngredients() {
     return <Loader />;
   } else {
     return (
-      <>
-        <div style={{ display: "flex" }} className="pt-5 pb-5">
+      <div data-cy="BurgerIngredients">
+        <div style={{ display: 'flex' }} className="pt-5 pb-5">
           <Tab value="one" active={oneInView === true} onClick={tabStorage}>
             Булки
           </Tab>
@@ -118,7 +118,7 @@ function BurgerIngredients() {
             </ul>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
