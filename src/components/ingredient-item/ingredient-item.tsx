@@ -1,9 +1,9 @@
-import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
-import ingredientItem from "./ingredient-item.module.css";
-import { useDrag } from "react-dnd";
-import { useMemo, FC } from "react";
-import { IIngredient } from "../../utils/types.js";
-import { useAppSelector } from "../../services/index";
+import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import ingredientItem from './ingredient-item.module.css';
+import { useDrag } from 'react-dnd';
+import { useMemo, FC } from 'react';
+import { IIngredient } from '../../utils/types.js';
+import { useAppSelector } from '../../services/index';
 
 interface Props {
   ingredient: IIngredient;
@@ -13,7 +13,7 @@ interface Props {
 const IngredientItem: FC<Props> = ({ ingredient, onTab }) => {
   const { bun, ingredients } = useAppSelector((state) => state.rootReducer.ingredientsConstructor);
   const [{ isDragging }, drag] = useDrag({
-    type: "ingredient",
+    type: 'ingredient',
     item: ingredient,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -37,8 +37,14 @@ const IngredientItem: FC<Props> = ({ ingredient, onTab }) => {
   }, [bun, ingredient._id]);
 
   return (
-    <div className={ingredientItem.ingredient__item} onClick={() => onTab(ingredient)} ref={drag} style={{ opacity }}>
-      {ingredient.type !== "bun" ? <Counter count={counter} /> : <Counter count={counterForBun} />}
+    <div
+      data-cy="IngredientsItem"
+      className={ingredientItem.ingredient__item}
+      onClick={() => onTab(ingredient)}
+      ref={drag}
+      style={{ opacity }}
+    >
+      {ingredient.type !== 'bun' ? <Counter count={counter} /> : <Counter count={counterForBun} />}
       <img src={ingredient.image} alt="фото." id={ingredient._id} />
       <div className={`${ingredientItem.ingredient__price} pt-1 pb-1`}>
         <p className="text text_type_digits-default pr-2">{ingredient.price}</p>

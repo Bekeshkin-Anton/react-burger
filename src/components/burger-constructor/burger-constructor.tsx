@@ -86,7 +86,7 @@ function BurgerConstructor() {
 
   return (
     <div data-cy="BurgerConstructor">
-      <div className={`${burgerStyles.ingredient} pl-4 pb-5`} ref={drop}>
+      <div data-cy="BurgerConstructorArea" className={`${burgerStyles.ingredient} pl-4 pb-5`} ref={drop}>
         <p className={`${burgerStyles.info} ${isActive && burgerStyles.flex}`}>Булочки сверху и снизу, соусы и начинки - посередине</p>
         {bun && <ConstructorElement type="top" isLocked={true} text={`${bun.name} (верх)`} price={bun.price} thumbnail={bun.image} />}
         <ul className={`${burgerStyles.ingredient__list} pt-5`}>
