@@ -35,7 +35,7 @@ export const Modal: FC<IModalProps> = ({ children, onClose, title }) => {
               <div className={`${modal.title_container}`}>
                 {title && <h2 className={`${modal.title} text text_type_main-large`}>{title}</h2>}
               </div>
-              <button onClick={onClose} className={modal.button_close}>
+              <button data-cy="close-modal-btn" onClick={onClose} className={modal.button_close}>
                 <CloseIcon type="primary" />
               </button>
             </div>

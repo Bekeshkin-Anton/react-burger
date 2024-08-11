@@ -4,9 +4,9 @@ describe('BurgerIngredients Component', () => {
   });
 
   it('должен отображать вкладки "Булки", "Соусы" и "Начинки"', () => {
-    cy.get('[data-cy="BurgerIngredients"]').contains('Булки').should('be.visible');
-    cy.get('[data-cy="BurgerIngredients"]').contains('Соусы').should('be.visible');
-    cy.get('[data-cy="BurgerIngredients"]').contains('Начинки').should('be.visible');
+    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Булки').should('be.visible');
+    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Соусы').should('be.visible');
+    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Начинки').should('be.visible');
   });
 
   it('должен отображать список ингредиентов в соответствующих категориях', () => {
@@ -39,10 +39,12 @@ describe('BurgerIngredients Component', () => {
     cy.get('[data-cy="loader"]').should('be.visible');
   });
 
-  it('должен открывать модальное окно при клике на ингредиент', () => {
+  it('должен открывать модалку при клике на ингредиент и закрывать модалку', () => {
     cy.get('[data-cy="BurgerIngredients"]').get('[data-cy="link"]').first().click();
-
-    cy.get('[data-cy="modal"').should('be.visible');
-    cy.get('[data-cy="modal"').contains('Детали ингредиента').should('exist');
+    cy.get('[data-cy="modal"]').should('be.visible');
+    cy.get('[data-cy="modal"]').contains('Детали ингредиента').should('exist');
+    // Закрытие модалки
+    cy.get('[data-cy="modal"]').find('[data-cy="close-modal-btn"]').click();
+    cy.get('[data-cy="modal"]').should('not.exist');
   });
 });
