@@ -1,16 +1,17 @@
 describe('BurgerIngredients Component', () => {
+  const BurgerIngredientsTabsWrapper = '[data-cy="BurgerIngredientsTabsWrapper"]';
+  const modal = '[data-cy="modal"]';
+  const BurgerIngredients = '[data-cy="BurgerIngredients"]';
   beforeEach(() => {
     cy.visit('/');
   });
   it('должен отображать вкладки "Булки", "Соусы" и "Начинки"', () => {
-    const BurgerIngredientsTabsWrapper = '[data-cy="BurgerIngredientsTabsWrapper"]';
     cy.get(BurgerIngredientsTabsWrapper).contains('Булки').should('be.visible');
     cy.get(BurgerIngredientsTabsWrapper).contains('Соусы').should('be.visible');
     cy.get(BurgerIngredientsTabsWrapper).contains('Начинки').should('be.visible');
   });
 
   it('должен отображать список ингредиентов в соответствующих категориях', () => {
-    const BurgerIngredients = '[data-cy="BurgerIngredients"]';
     cy.get(BurgerIngredients).get('#one [data-cy="link"]').should('have.length', 0);
     cy.get(BurgerIngredients).get('#two [data-cy="link"]').should('have.length', 0);
     cy.get(BurgerIngredients).get('#three [data-cy="link"]').should('have.length', 0);
@@ -24,7 +25,7 @@ describe('BurgerIngredients Component', () => {
 
     cy.visit('/');
 
-    cy.get('[data-cy="BurgerIngredients"]').contains('Произошла ошибка при получении данных').should('be.visible');
+    cy.get(BurgerIngredients).contains('Произошла ошибка при получении данных').should('be.visible');
   });
 
   it('должен показывать индикатор загрузки при запросе данных', () => {
@@ -41,8 +42,7 @@ describe('BurgerIngredients Component', () => {
   });
 
   it('должен открывать модалку при клике на ингредиент и закрывать модалку', () => {
-    const modal = '[data-cy="modal"]';
-    cy.get('[data-cy="BurgerIngredients"]').get('[data-cy="link"]').first().click();
+    cy.get(BurgerIngredients).get('[data-cy="link"]').first().click();
     cy.get(modal).should('be.visible');
     cy.get(modal).contains('Детали ингредиента').should('exist');
     // Закрытие модалки
