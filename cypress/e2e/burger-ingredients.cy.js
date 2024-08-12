@@ -2,17 +2,18 @@ describe('BurgerIngredients Component', () => {
   beforeEach(() => {
     cy.visit('/');
   });
-
   it('должен отображать вкладки "Булки", "Соусы" и "Начинки"', () => {
-    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Булки').should('be.visible');
-    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Соусы').should('be.visible');
-    cy.get('[data-cy="BurgerIngredientsTabsWrapper"]').contains('Начинки').should('be.visible');
+    const BurgerIngredientsTabsWrapper = '[data-cy="BurgerIngredientsTabsWrapper"]';
+    cy.get(BurgerIngredientsTabsWrapper).contains('Булки').should('be.visible');
+    cy.get(BurgerIngredientsTabsWrapper).contains('Соусы').should('be.visible');
+    cy.get(BurgerIngredientsTabsWrapper).contains('Начинки').should('be.visible');
   });
 
   it('должен отображать список ингредиентов в соответствующих категориях', () => {
-    cy.get('[data-cy="BurgerIngredients"]').get('#one [data-cy="link"]').should('have.length', 0);
-    cy.get('[data-cy="BurgerIngredients"]').get('#two [data-cy="link"]').should('have.length', 0);
-    cy.get('[data-cy="BurgerIngredients"]').get('#three [data-cy="link"]').should('have.length', 0);
+    const BurgerIngredients = '[data-cy="BurgerIngredients"]';
+    cy.get(BurgerIngredients).get('#one [data-cy="link"]').should('have.length', 0);
+    cy.get(BurgerIngredients).get('#two [data-cy="link"]').should('have.length', 0);
+    cy.get(BurgerIngredients).get('#three [data-cy="link"]').should('have.length', 0);
   });
 
   it('должен показывать сообщение об ошибке, если данные не загружены', () => {
@@ -40,11 +41,12 @@ describe('BurgerIngredients Component', () => {
   });
 
   it('должен открывать модалку при клике на ингредиент и закрывать модалку', () => {
+    const modal = '[data-cy="modal"]';
     cy.get('[data-cy="BurgerIngredients"]').get('[data-cy="link"]').first().click();
-    cy.get('[data-cy="modal"]').should('be.visible');
-    cy.get('[data-cy="modal"]').contains('Детали ингредиента').should('exist');
+    cy.get(modal).should('be.visible');
+    cy.get(modal).contains('Детали ингредиента').should('exist');
     // Закрытие модалки
-    cy.get('[data-cy="modal"]').find('[data-cy="close-modal-btn"]').click();
-    cy.get('[data-cy="modal"]').should('not.exist');
+    cy.get(modal).find('[data-cy="close-modal-btn"]').click();
+    cy.get(modal).should('not.exist');
   });
 });
